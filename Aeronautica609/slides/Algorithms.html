@@ -1,0 +1,110 @@
+<section>
+        <h3>Algorithms</h3>
+        
+</section>
+    
+
+
+<section>
+        <div style="position:relative;top:-60%">
+                <h4>Density-like algorithms</h4>
+        </div>
+        <div style="position:relative;top:0%;left:0%; font-size:0.9em">
+                <ul>
+        <li class="fragment" ; data-fragment-index="1" ;><b>Projected gradient:</b> One of the most natural and simple approach is to update  
+            <span style="font-size: 0.8em;">$\rho_k $ </span> 
+            with a projected descent direction and a line-search
+            <span style="font-size: 0.8em;">$\alpha $ </span> 
+               scheme (backtracking) as follows
+            <div style="position:relative; width:100%; font-size: 0.8em; left:20%">
+                <p></p>
+                $\rho_{k+1} = \text{max}(0,\text{min}(1,\rho_{k} - \alpha g_k))$ </div>
+                <p></p>
+            </li>
+        <li class="fragment" ; data-fragment-index="2" >In practice the volume is considered as a constraint and an Augmented Lagrangian scheme is used </li>
+        <li class="fragment" ; data-fragment-index="3" ;>Other algorithms:  
+            <ul>
+                    <li><b>Ipopt:</b> Interior point method. Large gray regions appear during the optimization process </li>
+                    <li><b>MMA:</b>Methods of moving asymptotes. So much used in the literature, not always converging</li> 
+            </ul>
+        </li>
+        </ul>
+        </div>
+        
+</section>
+
+
+
+
+<section>
+        <div style="position:relative;top:-60%">
+                <h4>Level-set type algorithm</h4>
+        </div>
+        <div style="position:relative;top:-10%;left:0%; font-size:0.85em">
+        <ul>
+        <li class="fragment" ; data-fragment-index="1" ;><b>SLERP:</b> Spherical linear interpolation (Amstutz 2006).</li>  
+                <li class="fragment" ; data-fragment-index="2"> The level-set 
+                        <span style="font-size: 0.8em;">$\psi $ </span> 
+                    is defined as follows:
+                <span style="font-size: 0.8em;">
+                   \begin{equation*}
+                   \psi(x) =  \left \{
+                    \begin{split}
+                     < 0 \quad \text{if} \quad x \in \Omega^1
+                    \\ > 0 \quad \text{if} \quad x \in \Omega^0 \\
+                    \end{split}
+                    \right.
+                    \end{equation*}
+                </span>
+                </li>
+                <li class="fragment" ; data-fragment-index="3"> We recall that in the optimality conditions for the exact shape optimization problem, we have
+                <span style="font-size: 0.8em;">
+                   \begin{equation*}
+                     \left \{
+                    \begin{split}
+                        g_{\Omega}^T < 0 \quad \text{if} \quad x \in \Omega^1
+                    \\ g_\Omega^T > 0 \quad \text{if} \quad x \in \Omega^0 \\
+                    \end{split}
+                    \right.
+                    \end{equation*}
+                </span>
+                </li>
+                <li class="fragment" ; data-fragment-index="4"><b>Fixed point algorithm</b>: the idea is to impose
+                        <span style="font-size: 0.8em;">$\forall x \in \Omega^0 \cup \Omega^1 $ </span> 
+                        <p></p>
+                        <span style="font-size: 0.8em;">
+                                \begin{equation*} \psi_{k+1} = g_{\Omega}^T(\psi_k) \end{equation*}
+                             </span>
+                        <p></p>
+                 </li>
+                <li class="fragment" ; data-fragment-index="5">Usually the level-set is imposed to be bounded (i.e. $||\psi_k|| = 1$)</li>
+            </ul>
+        </div>
+</section>
+
+
+<section>
+        <div style="position:absolute;top:-5%;left:30%">
+                <h4>Level-set type algorithm</h4>
+        </div>
+    <div>
+     <ul>
+        <li>The update scheme is as follows:
+                <span style="font-size: 0.8em;">$\forall x \in \Omega^0 \cup \Omega^1 $ </span> 
+                <p></p>
+                <span style="font-size: 0.8em;">
+                        \begin{equation*} \psi_{k+1} =
+                        \frac{ \sin(\kappa \theta_k)}{\sin( \theta_k)}\psi_{k} + 
+                         \frac{1 - \sin(\kappa \theta_k)}{\sin( \theta_k)}g_{k}
+                          \end{equation*}
+                     </span>
+                <p></p>
+            where <span style="font-size: 0.8em;">$\theta = \frac{(\psi,g)}{||g||}$ </span>  and
+            <span style="font-size: 0.8em;">$\kappa$ </span> place the role of a line search (back-tracking).     
+         </li>
+        
+    </ul>
+    </div>
+    <div><img style="border: none;box-shadow: none;width:80%" src="/img/SLERP.png" /> </div>
+
+</section>

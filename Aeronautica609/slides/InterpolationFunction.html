@@ -1,0 +1,273 @@
+<section>
+        <div>
+            <h3>Big-picture</h3>
+        </div>
+        <div class="fragment container" ;data-fragment-index="1" ;>
+            <img style="border: none;box-shadow: none;height: 70%;" src="/img/BigPicture.svg" />
+            <div>
+    </section>
+
+
+
+<section>
+    <h3>How do we model intermediate materials (gray areas)?</h3>
+</section>
+
+
+<section>
+        <h3>The SIMP method</h3>
+
+        <ul>
+        <li> The consitutive tensor
+                <p></p>
+            <div class="cf";>
+                $A_{\Omega,\varepsilon} = 2\color{blue}\mu(\rho)
+                 \mathbb{I} + (\color{blue}\kappa(\rho)) - \color{blue}{\mu}(\rho)) \mathbf {I}
+                 \otimes \mathbf {I}$
+                 <p></p>
+                </div>
+            uses the following polynomial interpolation law
+            <p></p>
+            <div class="cf">
+                $\color{blue}{\mu}(\rho) = (1-\rho^3)\mu_0 + \rho^3\mu_1 \quad \text{with}  \quad \color{blue}\kappa(\rho) = (1- \rho^3)\kappa_0 + \rho^3\kappa_1   $
+            </div>
+            <p></p> 
+        </li>
+
+        
+            <li> Broadly used in the community of Topology optimization
+        </li>   
+        <li>
+            Incorporated in many commercial softwares 
+        </li>
+        <li> Inspired by a microstructure study but heuristic
+        </li>
+        <li> Not always possible to understand in physical terms
+        </li>
+        </ul>
+
+</section>
+    
+
+
+<section>
+    <div>
+        <h3>Hashin-Shtrikman bounds</h3>
+    </div>
+    <div class="container">
+        <div class="box fragment" ; data-fragment-index="1">
+            <div class="center" ; style="top:0%" ;>
+                <img style="border: none;box-shadow: none;" src="/img/Hashin.jpg" />
+            </div>
+            <div class="center" ; style="left:20%;bottom:25%;">
+                <img style="border: none;box-shadow: none;" src="/img/HS.png" />
+            </div>
+        </div>
+        <div class="box2 middle fragment" ; data-fragment-index="2">
+            <img style="border: none;box-shadow: none;bottom:20%" src="/img/HSMicro.png" />
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+<section>
+    <h3>Rational functions</h3>
+    <div>
+        <ul>
+        <li>
+            <b>Definition:</b> The set of rationals functions is defined by  
+            <p></p>
+            <div class="cf"> 
+                $\mathcal{R}:= \left \{t: [0,1] \rightarrow [t_0,t_1] \quad | \quad t(\rho) = 
+                               \frac{A\rho^2 + B\rho + C}{D \rho + 1} \right \} $
+            <div>
+            <p></p>
+
+        </li>
+        <li> <b>Proposition:</b>  Hashin-Shtrikman Bounds are rational function with 
+             <span class="if"> A = 0 </span>, i.e.,
+             <p></p>
+             <div class="cf"> 
+                    $\mu_{LB}^{HS}, \mu_{UB}^{HS}, \kappa_{LB}^{HS}, \kappa_{UB}^{HS} \in \mathcal{R}$
+             <div>
+        </li>    
+    </ul>
+    </div>
+
+</section>
+
+
+<section>
+   <h3>H-S bounds - Topological derivative</h3>
+   <div style="height: 50%;">
+        <ul>
+        <li> <b>Proposition:</b>  The isotropic topological derivative for the compliance can be written as  
+            <div class="cf">  
+                    $g_\Omega^T = \left \{ 
+                    \begin{split} - e(u_\Omega):d\mathbb{C}_0:e(u_\Omega) & \quad \text{if} \in \Omega^0 \\
+                                  - e(u_\Omega):d\mathbb{C}_1:e(u_\Omega) & \quad \text{if} \in \Omega^1
+                    \end{split}
+                    \right.
+                    $
+            </div>
+            with  
+            <div class="cf"> 
+                    $   
+                    \begin{split}
+                    d\mathbb{C}_0 = 2 d\mu_0 \mathbb{I} + (d\kappa_0 - d\mu_0 ) I\otimes I \\
+                    d\mathbb{C}_1 = 2 d\mu_1 \mathbb{I} + (d\kappa_1 - d\mu_1 ) I\otimes I
+                    \end{split}
+                    $
+            <div>
+       </li>
+       <li><b>Theorem: </b> 
+        The derivative of the H-S bounds in the extreme values coincides with the topological derivative in the following sense
+        <p>
+        <div class="cf"> 
+                $
+                \begin{split}
+                \mu_{LB}^{HS}{'}(0) =  d\mu_0  \\
+                \mu_{UB}^{HS}{'}(1) =  d\mu_1  
+                \end{split}
+                
+                \quad
+                \begin{split}
+                \kappa_{LB}^{HS} {'}(0) =  d\kappa_0  \\
+                \kappa_{UB}^{HS} {'}(1) =  d\kappa_1  
+                \end{split}
+                $
+        <div>
+        </p>     
+        </li>
+    </ul>
+    </div>
+
+</section>
+
+
+
+<section>
+        <h3>SIMP-ALL interpolation</h3>
+        <ul> 
+        <li><b>Definition:</b> SIMP-ALL interpolations   
+                <span class="if">$\mu_{SA}, \kappa_{SA} \in \mathcal{R}$</span>
+                are defined as rational functions with the coeficients 
+                <span class="if">$A,B,C,D$</span>
+                such that 
+       <p></p>
+        <div class="cf"; style="width:80%" >
+                $
+                \left \{ \begin{split} 
+                \mu_{SA}(0)    &= \mu_0 \\
+                \mu_{SA}(1)    &= \mu_1 \\
+                \mu_{SA}{'}(0) &= \mu_{LB}^{HS}{'}(0) =  d\mu_0  \\
+                \mu_{SA}{'}(1) &= \mu_{UB}^{HS}{'}(1) =  d\mu_1  
+                \end{split}
+                \right.
+
+                \quad
+                \left \{
+                \begin{split}
+                \kappa_{SA}(0)    &= \kappa_0 \\
+                \kappa_{SA}(1)    &= \kappa_1 \\
+                \kappa_{SA}{'}(0) &= \kappa_{LB}^{HS}{'}(0) =  d\kappa_0  \\
+                \kappa_{SA}{'}(1) &= \kappa_{UB}^{HS}{'}(1) =  d\kappa_1  
+                \end{split}
+                \right.
+                $
+            </div>          
+        </li>
+
+        </ul>
+ 
+</section>
+
+<section>
+<div><h3 style="font-size:30pt; width:100%" >SIMP-ALL interpolation</h3></div>
+<div>
+    <ul style="font-size:20pt; width:100%"> 
+<li><b>Theorem:</b> Given two functions rational functions
+<span class="if">$ s,t \in \mathcal{R}$</span> 
+such that 
+<span class="if">$ s'(0) \leq t'(0)$</span>
+and
+<span class="if">$ s'(1) \geq t'(1)$</span>
+then 
+<p>
+<div class="cf">$ s(\rho) \leq t(\rho) \quad  \forall \rho\in [0,1] $</div>
+</p>
+</li>
+
+<li> <b>Propostion: </b> H-S bounds satisfies the conditions of theorem before. In other words: 
+    <p></p>
+    <div class="cf">
+            $
+            \left \{ \begin{split} 
+            \mu_{LB}^{HS}{'}(0) \leq \mu_{UB}^{HS}{'}(0)   \\
+            \mu_{UB}^{HS}{'}(1) \leq \mu_{LB}^{HS}{'}(1)      
+            \end{split}
+            \right.
+
+            \quad
+            \left \{
+            \begin{split}
+            \kappa_{LB}^{HS}{'}(0) &= \kappa_{UB}^{HS}{'}(0)  \\
+            \kappa_{UB}^{HS}{'}(1) &= \kappa_{LB}^{HS}{'}(1)   
+            \end{split}
+            \right.
+             $
+    </div>
+</li>
+
+<p></p>
+<li> <b>Corollary:</b> The SIMP-ALL interpolation is in between H-S bounds. This is
+    <p></p>
+    <div class="cf">
+        $ \left \{
+        \begin{split}
+        \mu_{LB}^{HS}(\rho) \leq \color{blue}{\mu_{SA}^{}(\rho)} \leq \mu_{UB}^{HS}(\rho)  \\
+        \kappa_{LB}^{HS}(\rho) \leq \color{blue}{\kappa_{SA}^{}(\rho)} \leq \kappa_{UB}^{HS}(\rho)
+        \end{split}
+        \right.$
+    <div>    
+</li>
+</ul> 
+</div>    
+
+</section>    
+
+
+    
+
+
+<section>
+    <h3>SIMP-ALL interpolation</h3>
+    <div class="cf"; style="font-size: 0.6em">$E_1 = 1; E_0 = 10^{-3}; \color{blue}{\nu_1 = 1/3}; \nu_0 = 1/3$</div>
+    <img style="border: none;box-shadow: none;width:40%" src="/img/simpAll/Case_1_Shear.png" />
+    <img style="border: none;box-shadow: none;width:40%; margin-left: 10%" src="/img/simpAll/Case_1_Bulk.png" />
+</section>
+
+
+
+<section>
+        <h3>SIMP-ALL interpolation</h3>
+        <div class="cf"; style="font-size: 0.6em">$E_1 = 1; E_0 = 10^{-3}; \color{blue}{\nu_1 = -0.7}; \nu_0 = 1/3$</div>
+        <img style="border: none;box-shadow: none;width:40%" src="/img/simpAll/Case_5_Shear.png" />
+        <img style="border: none;box-shadow: none;width:40%; margin-left: 10%" src="/img/simpAll/Case_5_Bulk.png" />
+</section>
+
+
+
+<section>
+        <h3>SIMP-ALL interpolation</h3>
+        <div class="cf"; style="font-size: 0.6em">Bi-material problem</div>
+        <img style="border: none;box-shadow: none;width:40%" src="/img/simpAll/Bimaterial_3_Shear.png" />
+        <img style="border: none;box-shadow: none;width:40%; margin-left:10%" src="/img/simpAll/Bimaterial_3_Bulk.png" />
+</section>
+
+

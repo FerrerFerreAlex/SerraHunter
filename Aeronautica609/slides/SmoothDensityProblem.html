@@ -1,0 +1,194 @@
+<!-- <section>
+    <h3>Relaxation</h3>
+    <ul>
+        <li class="fragment" ; data-fragment-index="1">
+            <div> Enlarging admissible designs:
+                <span style="font-size: 0.8em;">$\chi_{\Omega} \in \{0,1\} \rightarrow \rho \in [0,1]$</span>
+            </div>
+        </li>
+        <li class="fragment" ; data-fragment-index="2">
+            <span style="font-size: 0.8em;">$J(\Omega)$</span>
+            is replaced by
+            <span style="font-size: 0.8em;">$J(\rho)$</span>
+
+        </li>
+        <li class="fragment" ; data-fragment-index="3">
+            Appearance of gray areas <span style="font-size: 0.8em;">$\rightarrow$</span> Interpreted as
+            microstructres?
+        </li>
+        <li class="fragment" ; data-fragment-index="4">
+            Material properties
+            <span style="font-size: 0.8em;">$E$ </span>
+            and
+            <span style="font-size: 0.8em;">$\nu$ </span>?
+
+        </li>
+        <li class="fragment" ; data-fragment-index="5">
+            <div>
+                Celebrated <b>SIMP method</b>:
+                <span style="font-size: 0.8em;  width: 50%; margin: 0 auto;">$E=E_1\rho^3$</span>
+            </div>
+        </li>
+        <li class="fragment" ; data-fragment-index="5">
+            Use of filters to avoid checkerboards (problem become well-posed) </li>
+    </ul>
+</section> -->
+
+<section>
+        <div>
+            <h3>Big-picture</h3>
+        </div>
+        <div class="fragment container" ;data-fragment-index="1" ;>
+            <img style="border: none;box-shadow: none;height: 70%;" src="/img/BigPicture.svg" />
+            <div>
+    </section>
+
+
+  
+<section>
+    <h3>Smooth density optimization problem</h3>
+    <ul>
+        <li class="fragment" ; data-fragment-index="1">
+            <div> We replace
+                <span style="font-size: 0.8em;">$\chi_{\Omega}$</span>
+                by the density function
+                <span style="font-size: 0.8em;">$\rho \in L^{\infty}(D,[0,1])$</span>
+            </div>
+        </li>
+        <li class="fragment" ; data-fragment-index="2">
+            The smoothed elastic parameters are considered as:
+            <div style="position:relative; font-size: 0.8em; left: 25%; width:60%">$\color{blue}\mu(\rho) =
+                [1-\zeta(L_{\varepsilon}(\rho))]\mu_0 + \zeta(L_{\varepsilon}(\rho)) \mu_1 $</div>
+            <div style="position:relative; font-size: 0.8em; left: 25%; width:60%">$\color{blue}\kappa(\rho) =
+                [1-\zeta(L_{\varepsilon}(\rho))]\kappa_0 + \zeta(L_{\varepsilon}(\rho)) \kappa_1 $</div>
+        </li>
+        <li class="fragment" ; data-fragment-index="3">
+            <span style="font-size: 0.8em;">$\color{blue}{L_{\varepsilon}}: L^2(D) \rightarrow L^{\infty}(D) $</span>
+            is a smoothing operator.
+        </li>
+        <li class="fragment" ; data-fragment-index="4">
+
+            <span style="font-size: 0.8em;">$\zeta: \mathbb{R} \rightarrow \mathbb{R}$ </span>
+            is an smooth interpolation function such that
+            <div style="position:relative; font-size: 0.8em; left: 25%; width:60%">$\zeta(0) = 0 \quad \text{and} \quad
+                \zeta(1) = 1$</div>
+        </li>
+    </ul>
+
+</section>
+
+<section>
+    <div style="position:absolute;top:-200%;left:5%">
+        <h4>Smooth density optimization problem</h4>
+    </div>
+    <div style="position:absolute; left:-5%; top:-50%; width: 100%; font-size: 35px;">
+        <ul>
+            <li class="fragment" ; data-fragment-index="1" ;> Formulation: find a density
+                <span style="font-size: 0.8em;">$\rho \in \mathcal{K}$ </span>
+                such that
+                <div style="width: 100%; position:relative; left:0%;font-size: 0.8em;">
+                    \begin{equation*}
+                    \begin{aligned}
+                    & \underset{\rho \in \mathcal{K}}{\text{min}} & J_{\varepsilon}(\rho):= C_{\varepsilon}(\rho) +
+                    l \ \text{Vol}_{\varepsilon}(\rho)
+                    \end{aligned}
+                    \end{equation*}
+                </div>
+            </li>
+            <li class="fragment" ; data-fragment-index="2" ;>
+                <span style="font-size: 0.8em;">$\mathcal{K}:= L^\infty(D,[0,1])$</span>
+                is the closed convex subset of
+                <span style="font-size: 0.8em;">$L^2(D)$</span>
+                of density functions
+            </li>
+            <li class="fragment" ; data-fragment-index="3" ;>
+                The approximate compliance is
+                <p></p>
+                <div style="width: 40%; position: relative; left:20%;font-size: 0.8em;">
+                    $C_\varepsilon(\rho) = \int_{D} A_{\rho,\varepsilon}
+                    e(u_{\rho,\varepsilon}):e(u_{\rho,\varepsilon}) d{\Omega} =
+                    \int_{\Gamma_N} g u_{\rho,\varepsilon}$ </div>
+                <p></p>
+                <div>where $u_{\Omega}$ is solution in $H^1$ of (elasticity): </div>
+                <div style="width: 100%; position:relative; margin:10px;font-size: 0.8em;">
+                    $
+                    \left \{
+                    \begin{split}- \nabla \cdot (A_{\rho,\varepsilon} e(u_{\rho,\varepsilon})) &= f \quad {\rm in} \ D,
+                    \\
+                    u_{\rho,\varepsilon} &= 0 \quad {\rm on} \ \Gamma_{D}, \\
+                    A_{\rho,\varepsilon} e(u_{\rho,\varepsilon}) \cdot n &= g \quad {\rm on} \ \Gamma_{N}.
+                    \\\end{split}
+                    \right.
+                    \quad
+                    \text{with}
+                    \quad
+                    \color{blue}{A_{\rho,\varepsilon} = 2\mu(\rho) \mathbb{I} + (\kappa(\rho) - \mu(\rho)) \mathbf {I} \otimes
+                    \mathbf {I}}
+                    $
+                </div>
+            </li>
+            <li class="fragment" ; data-fragment-index="4" ;>
+                The approximate volume of the structure:
+                <span style="font-size: 0.8em;">$\text{Vol}(\rho) =
+                    \int_{\Omega} L_\varepsilon (\rho) d{\Omega}$</span>
+            </li>
+        </ul>
+    </div>
+</section>
+
+
+<section>
+    <style>
+        ol.alphaList {
+            list-style-type: lower-roman;
+        }
+    </style>
+    <div style="position:absolute;top:-300%;left:0%">
+        <h4>Smooth density optimization problem</h4>
+    </div>
+    <div style="position:absolute; left:-5%; top:-50%; width: 100%; font-size: 35px;">
+        <ul>
+
+            <li class="fragment" ; data-fragment-index="1" ;><b>Proposition:</b> The approximate compliance
+                <span style="font-size: 0.8em;">$C_\varepsilon(\rho) $ </span>
+                admits a Fréchet derivative in any arbitrary direction
+                <span style="font-size: 0.8em;">$\hat{\rho} \in L^2(D)$</span>
+                as
+                <p></p>
+                <div style="position: relative; width:100%; left:20%; font-size: 0.8em;">
+                    $C_{\varepsilon}'(\rho)(\hat{\rho}) = \int_{D} g_{\rho,\varepsilon}\hat{\rho}d\Omega $
+
+                </div>
+                with
+                <div style="position: relative; width:100%; left:20%; font-size: 0.8em;">
+                        $g_{\rho,\varepsilon} =
+                        - L_\varepsilon[2\color{blue}{\mu'(L_\varepsilon(\rho))}e(u_{\rho,\varepsilon}):e(u_{\rho,\varepsilon}) +
+                        (\color{blue}{\kappa'(L_\varepsilon(\rho))} - \color{blue}{\mu'(L_\varepsilon(\rho))}) tr(e(u_{\rho,\varepsilon}))^2] $
+    
+                </div>
+                <p></p>
+            </li>
+            <li class="fragment" ; data-fragment-index="1" ;><b>Proposition:</b> Let
+                <span style="font-size: 0.8em   ;">
+                    $\rho\in \mathcal{K}$
+                </span>
+                be a local minimizer of the cost
+                <span style="font-size: 0.8em;">$ J(\rho)$</span>
+                then
+                <ol class="alphaList"; style="position:relative; width:50%; margin:auto;">
+                    <li><span style="font-size: 0.8em;">
+                            $\quad g_{\rho,\varepsilon} \leq0 \quad \text{when} \quad \rho=1 $
+                        </span></li>
+                    <li><span style="font-size: 0.8em;">
+                            $ \quad g_{\rho,\varepsilon} =0 \quad \text{when} \quad 0\le \rho\le 1 $
+                        </span></li>
+                    <li><span style="font-size: 0.8em;">
+                            $ \quad g_{\rho,\varepsilon} \ge0 \quad \text{when} \quad \rho=0 $
+                        </span></li>
+
+                </ol>
+
+            </li>
+        </ul>
+    </div>
+</section>

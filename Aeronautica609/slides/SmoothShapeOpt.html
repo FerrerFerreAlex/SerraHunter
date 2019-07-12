@@ -1,0 +1,292 @@
+<section>
+        <div>
+            <h3>Big-picture</h3>
+        </div>
+        <div class="fragment container" ;data-fragment-index="1" ;>
+            <img style="border: none;box-shadow: none;height: 70%;" src="/img/BigPicture.svg" />
+            <div>
+    </section>
+
+
+
+<section>
+    <h3>Smooth shape optimization problem</h3>
+
+</section>
+
+<section>
+    <div style="position:absolute;top:-20%;left:0%">
+        <h4>Smooth shape optimization problem</h4>
+    </div>
+    <ul>
+        <li class="fragment" ; data-fragment-index="1">
+            <div> The smooth shape optimization problem is the restriction of the density to filtered characteristic
+                functions</div>
+            <p></p>
+            <div style="width: 100%; position:relative; left:0%;font-size: 0.8em;">
+                \begin{equation*}
+                \begin{aligned}
+                & \underset{\Omega \in \mathcal{U}_{ad}}{\text{min}} & J_{\varepsilon}(\Omega) =
+                J_{\varepsilon}(\chi_{\Omega})
+                \end{aligned}
+                \end{equation*}
+            </div>
+
+        </li>
+        <li class="fragment" ; data-fragment-index="2">
+            This problem features:
+            <ul>
+                <li> an approximate characteristic function:
+                    <span style="font-size: 0.8em" ;>$\chi_{\Omega,\varepsilon} = \color{blue}{L_{\varepsilon}}(\chi)$</span>
+                </li>
+                <li> an approximate elasticity tensor:
+                    <span style="font-size: 0.8em" ;>$A_{\Omega,\varepsilon} = 2\color{blue}\mu(\chi_{\Omega,\varepsilon})
+                        \mathbb{I} + (\color{blue}{\kappa}(\chi_{\Omega,\varepsilon}) - \color{blue}{\mu}(\chi_{\Omega,\varepsilon})) \mathbf {I}
+                        \otimes \mathbf {I}$</span>
+                </li>
+                <li> an approximate displacement field:
+                    <span style="font-size: 0.8em" ;>$u_{\Omega,\varepsilon} = u_{\chi_{\Omega,\varepsilon}}$</span>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+</section>
+
+<section>
+    <div style="position:absolute;top:-10%;left:0%">
+        <h4>Smooth shape optimization problem</h4>
+    </div>
+    <ul>
+        <li class="fragment" ; data-fragment-index="1">
+            The approximate gradient
+            <span style="font-size: 0.8em;">
+                $g_{\Omega,\varepsilon} = g_{\chi_{\Omega,\varepsilon}}$
+            </span>
+            is the density-based gradient
+            <span style="font-size: 0.8em;">
+                $g_{\rho,\varepsilon}$
+            </span>
+            taken at
+            <span style="font-size: 0.8em;">
+                $\rho=\chi_{\Omega}$
+            </span>
+            (not the shape or topological derivative). It accounts for variations of
+            <span style="font-size: 0.8em;">
+                $\Omega$
+            </span>
+            by perturbations of its characteristic function:
+            <p></p>
+            <div style="font-size: 0.8em;position: relative; width:50%; margin:auto">
+                $\chi_{\Omega} \rightarrow \chi_{\Omega} + \rho $
+            </div>
+        </li>
+        <li class="fragment" ; data-fragment-index="1" ;><b>Proposition:</b> Let 
+            <span style="font-size: 0.8em;">
+                    $\Omega \in \mathcal{U}_{ad}$
+            </span>
+             be a local minimizer of the cost 
+             <span style="font-size: 0.8em;">$ J(\Omega)$</span> 
+             then
+            <ol  class="alphaList"; style="position:relative; width:100%; left:20% " >
+                    <li><span style="font-size: 0.8em;">
+                                    $\forall x \in \Omega^1, g_{\Omega,\varepsilon}(x)\leq0$
+                     </span></li>
+                    <li><span style="font-size: 0.8em;">
+                                    $\forall x \in \Gamma, g_{\Omega,\varepsilon}(x)=0$
+                     </span></li>
+                     <li><span style="font-size: 0.8em;">
+                                    $\forall x \in \Omega^0, g_{\Omega,\varepsilon}(x)\geq0$
+                     </span></li>
+    </ol>
+
+        </li>
+    </ul>
+
+</section>
+
+<section>
+        <div style="position:relative;top:-10%;">
+            <h4>Filters</h4>
+        </div>
+        <ul>
+            <li class="fragment" ; data-fragment-index="1">
+                <b>Elliptic PDE:</b>  
+                <span style="font-size: 0.8em;">
+                    $L_{\varepsilon}^{ell}: L^2(D) \rightarrow L^{\infty}(D)$
+                </span>
+                relies on solving 
+                <p></p>
+                <div style="font-size: 0.8em;position:relative; width:100%; left:10">
+                      \begin{equation*}
+                                        \left \{
+                                        \begin{split}- \varepsilon^2 \Delta \rho_{\varepsilon} + \rho_{\varepsilon} &= \rho \quad {\rm in} \ D, \\
+                                        \frac{\partial \rho_{\varepsilon}}{\partial n} &= 0 \quad {\rm on} \ \partial{D}. \\\end{split}
+                                        \right.
+                                        \end{equation*}
+                                        </div>
+            </li>
+            <li class="fragment" ; data-fragment-index="2">
+                    <b>Kernel convolution:</b>  
+                    <span style="font-size: 0.8em;">
+                        $L_{\varepsilon}^{conv}: L^2(D) \rightarrow L^{\infty}(D)$
+                    </span>
+                    is defined as 
+                    <p></p>
+                    <div style="position:relative; width:100%; left:20%; font-size: 0.8em;">
+                            $L_{\varepsilon}^{conv}\chi_{\Omega}:= \eta_{\varepsilon} \circledast \chi_{\Omega}
+                            \quad \text{with} \quad
+                            \eta_{\varepsilon}(x) = \frac{1}{\varepsilon^d}\eta(\frac{x}{\varepsilon}) 
+                            $
+                    </div>
+                    <p></p>
+                    where 
+                    <span style="font-size: 0.8em;">
+                            $\eta_{\varepsilon}$
+                    </span> is a smooth kernel with compact support and certain properties.
+                    
+                    <div style="position:relative; width:45%; left:20%">
+                            <img style="border: none;box-shadow: none;" src="/img/KernelFilter.png" />
+                     </div>
+                </li>
+        </ul>
+    
+    </section>
+
+
+    <section>
+        <div style="position:relative; width:100%; margin:auto; font-size: 0.9em">
+                <h4>Convergence</h4>
+        </div>
+        <ul style="position:relative;top:0; width:100%; margin:auto; font-size: 0.7em">
+        <li class="fragment" ; data-fragment-index="1" ;><b>Proposition:</b>  Regardless 
+            <span style="font-size: 0.8em;">$L_\varepsilon $ </span> 
+            
+            <ul>
+                <li> $A_{\Omega,\varepsilon} \rightarrow A_{\Omega} \quad \text{in} \quad L^p(D), 1\leq p \leq \infty$
+                </li>
+                <li> $u_{\Omega,\varepsilon} \rightarrow u_{\Omega} \quad \text{in} \quad W^{1,p}(D), p \geq 2$
+                </li>
+            </ul> 
+        </li>
+        <li class="fragment" ; data-fragment-index="1" ;><b>Theorem:</b>  Let   
+            <span style="font-size: 0.8em;">$\Omega \in \mathcal{U}_{ad}$ </span>, 
+            we see that when 
+             <span style="font-size: 0.8em;">$\quad \varepsilon \rightarrow 0$ </span> 
+             <ol class="alphaList"; >
+                    <li><span style="font-size: 0.8em;">
+                            $J_{\varepsilon}(\Omega) \rightarrow J(\Omega)$
+                        </span></li>
+                    <li><span style="font-size: 0.8em;">
+                            $g_{\Omega,\varepsilon} \rightarrow \left \{ 
+                                \begin{split} - e(u_\Omega):\mathbb{C}'(0):e(u_\Omega) & \quad \text{if} \in \Omega^0 \\
+                                              - e(u_\Omega):\mathbb{C}'(1):e(u_\Omega) & \quad \text{if} \in \Omega^1
+                                \end{split}
+                                \right.  \quad \text{in} \quad L^p(\Omega^0 \cup \Omega^1) $
+                        </span></li>
+                        <p></p>
+                         <div style="font-size:0.8em;">$  \text{with} \quad \left \{ \begin{split}
+                                \mathbb{C}'(0) = 2 \mu'(0) \mathbb{I} + (\kappa'(0) - \mu'(0) ) I\otimes I \\
+                                \mathbb{C}'(1) = 2 \mu'(1) \mathbb{I} + (\kappa'(1)- \mu'(1) ) I\otimes I
+                                \end{split} \right.$ </div>
+                        <p></p>
+                    <li><span style="font-size: 0.8em;">
+                            $g_{\Omega,\varepsilon}|_{\Gamma} \rightarrow g_{\Omega}^s  \quad \text{in} \quad L^1(\Gamma)$
+                        </span></li>
+
+                </ol>
+        </li>
+        </ul>
+</section>
+
+
+<!-- 
+<div class="cf"> 
+    $   
+    \begin{split}
+    \mathbb{C}'(0) = 2 \mu'(0) \mathbb{I} + (\kappa'(0) - \mu'(0) ) I\otimes I \\
+    \mathbb{C}'(1) = 2 \mu'(1) \mathbb{I} + (\kappa'(1)- \mu'(1) ) I\otimes I
+    \end{split}
+    $
+<div> -->
+
+<section>
+    <div>
+        <h3>Convergence of the cost</h3>
+    </div>
+    <div class="container">
+        <div class="box fragment" ; data-fragment-index="1">
+            <div class="center" ; style="top:0%" ;>
+                <img style="border: none;box-shadow: none;" src="/img/Convergence.png" />
+            </div>
+            <div class="center" ; style="left: 0%;bottom:10%;font-size: 0.6em;">
+                $C_{\varepsilon}(\Omega)=
+                {\int_{D}{A(L_\varepsilon{\chi_{\Omega}})e(u_{\Omega,\varepsilon}):e(u_{\Omega,\varepsilon})
+                })}$
+            </div>
+        </div>
+        <div class="box2 middle fragment" ; data-fragment-index="2">
+            <img style="border: none;box-shadow: none;" src="/img/ConvergenceCost.png" />
+        </div>
+    </div>
+</section>
+
+
+
+<section>
+    <div>
+        <h3>Convergence of the gradient in $\Omega$</h3>
+        <h5>(Topological derivative)</h5>
+    </div>
+    <div class="container2">
+        <div class="box fragment" ; data-fragment-index="1">
+            <div class="center" ; style="top:0%" ;>
+                <img style="border: none;box-shadow: none;" src="/img/Convergence.png" />
+            </div>
+            <div class="center" ; style="bottom:10%;font-size: 0.8em;">
+                $e_{\Omega,\varepsilon}^T=
+                \frac{\int_{\Omega}{|g_{\Omega}^{T} -g_{\Omega,\varepsilon}^{T}|^2}}
+                {\int_{\Omega}{|g_{\Omega}^{T}|^2}}$
+            </div>
+        </div>
+        <div class="box2 middle fragment" ; data-fragment-index="2">
+            <img style="border: none;box-shadow: none;" src="/img/TopologicalDerivativeConvergence.png" />
+        </div>
+    </div>
+</section>
+
+
+
+<section>
+    <div>
+        <h3>Convergence of the gradient in $\Gamma$</h3>
+        <h5>(Shape derivative)</h5>
+    </div>
+    <div class="container2">
+        <div class="box fragment" ; data-fragment-index="1">
+            <div class="center" ; style="top:0%" ;>
+                <img style="border: none;box-shadow: none;" src="/img/Convergence.png" />
+            </div>
+            <div class="center" ; style="bottom:10%;font-size: 0.8em;">
+                $e_{\Omega,\varepsilon}^s=
+                \frac{\int_{\Gamma}{|g_{\Omega}^{s} -g_{\Omega,\varepsilon}^{s}|^2}}
+                {\int_{\Gamma}{|g_{\Omega}^{s}|^2}}$
+            </div>
+
+        </div>
+        <div class="box2 middle fragment" ; data-fragment-index="2">
+            <img style="border: none;box-shadow: none;" src="/img/ConvergenceShapeDerivative.png" />
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+    
+

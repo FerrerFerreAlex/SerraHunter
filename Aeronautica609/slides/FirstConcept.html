@@ -1,0 +1,102 @@
+<section>
+  <h3>First concept</h3>
+
+</section>
+
+<section>
+        <div style="position:absolute;top:-300%;left:25%">
+                <h4>Topological derivative</h4>
+        </div>
+        <div style="position:absolute; left:-5%; top:-50%; width: 100%; font-size: 35px;">
+                <ul>
+                        <li>
+                                <div class="fragment" ; data-fragment-index="1" ;> Sensitivity of a functional when:
+                                        <ul>
+                                                <li>adding a small bubble:
+                                                        <span style="font-size: 0.8em;"> $\Omega \mapsto \Omega_{x,r}
+                                                                := \Omega \cup B(x,r)$</span> for <span style="font-size: 0.8em;">
+                                                                $x \notin \overline{\Omega}$</span>
+                                                </li>
+                                        </ul>
+
+                                        <ul>
+                                                <li>nucleating a small hole:
+                                                        <span style="font-size: 0.8em;"> $\Omega \mapsto \Omega_{x,r}
+                                                                := \Omega \setminus\overline{B(x,r)}$</span> for <span
+                                                                style="font-size: 0.8em;"> $x \in \Omega$</span>
+                                                </li>
+                                        </ul>
+                                </div>
+                        </li>
+                        <p></p>
+                        </br>
+                        <li class="fragment" ; data-fragment-index="2" ;><b>Definition:</b> A functional <span style="font-size: 0.8em;">$F(\Omega)$</span>
+                                has a topological derivative at
+                                <span style="font-size: 0.8em;">$x \in \Omega^0 \cup \Omega^1$</span>
+                                if there exist the following asymptotic expansion
+                                <div style="width: 100%; float:left; margin:10px;font-size: 0.8em;">
+                                        $$F(\Omega_{r,x}) = F(\Omega) + s_{\Omega}(x) \color{blue}{g_{\Omega}^T(x)} |B(x,r)| +
+                                        o(|B(x,r)|).$$
+                                </div>
+                                <div> where
+                                        <span style="font-size: 0.8em;">$s_\Omega(x)=1$</span> when <span style="font-size: 0.8em;">$x\in
+                                                \Omega^0$</span> and
+                                        <span style="font-size: 0.8em;">$s_\Omega(x)=-1$</span> when <span style="font-size: 0.8em;">
+                                                $x\in \Omega^1$.</span>
+                        </li>
+                </ul>
+        </div>
+        <div class="fragment" ; data-fragment-index="1" ; style="position:absolute; width: 35%; right:10%; top:-200%">
+                <img style="border: none;box-shadow: none;" src="/img/TopologicalDerivative.png" /></div>
+        </div>
+</section>
+
+
+<section>
+  <h4>Topological derivative</h4>
+  <div style="font-size: 1.1em;">
+       <ul>
+       <li style="font-size: 0.8em;"">
+            Isotropic topological derivative for the compliance:
+            <p></p>
+           <div class="cf3">
+                   $g_\Omega^T = \left \{
+                   \begin{split} - e(u_\Omega):d\mathbb{C}_0:e(u_\Omega) & \quad \text{if} \in \Omega^0 \\
+                                 - e(u_\Omega):d\mathbb{C}_1:e(u_\Omega) & \quad \text{if} \in \Omega^1
+                   \end{split}
+                   \right.
+                   $
+           </div>
+           with
+           <p></p>
+           <div class="cf3">
+                   $
+                   \begin{split}
+                   d\mathbb{C}_0 = 2 d\mu_0 \mathbb{I} + (d\kappa_0 - d\mu_0 ) I\otimes I \\
+                   d\mathbb{C}_1 = 2 d\mu_1 \mathbb{I} + (d\kappa_1 - d\mu_1 ) I\otimes I
+                   \end{split}
+                   $
+           </div>
+            where
+            <p></p>
+            <div class="cf2">
+                    \begin{equation}
+                      {{d\mu}_{0}} = \mu_{0}(\mu_{1} - \mu_{0})q_{{\mu}_{0}}
+                       \text{,} \quad
+                      {q_{{\mu}_{0}}}  = \frac{(\mu_{0}+{\eta_{\mu}}_0)}{\mu_{0}(\mu_{1}+{\eta_{\mu}}_0)}
+                      \quad \text{and} \quad
+                      {\eta_{\mu}}_0 =  \frac{\kappa_{0}\mu_{0}}{2\mu_{0}+\kappa_{0}}
+                      \end{equation}
+           </div>
+           <p></p>
+           <div class="cf2">
+                      \begin{equation}
+                      {{d\kappa}_{0}} = \kappa_{m}(\kappa_{I} - \kappa_{m})q_{{\kappa}_{0}}
+                      \text{,} \quad
+                      {q_{{\kappa}_{0}}}  =  \frac{(\kappa_{0}+\mu_{0})}{\kappa_{0}(\kappa_{1}+\mu_{0})}
+                      \end{equation}
+            </div>
+   </ul>
+   </div>
+
+</section>

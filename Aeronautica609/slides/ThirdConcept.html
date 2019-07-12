@@ -1,0 +1,76 @@
+<section>
+  <h3>Third concept</h3>
+</section>
+
+<section>
+    <h3>Rational functions</h3>
+    <div>
+        <ul>
+        <li>
+            <b>Definition:</b> The set of rationals functions is defined by
+            <p></p>
+            <div class="cf">
+                $\mathcal{R}:= \left \{t: [0,1] \rightarrow [t_0,t_1] \quad | \quad t(\rho) =
+                               \frac{A\rho^2 + B\rho + C}{D \rho + 1} \right \} $
+            <div>
+            <p></p>
+
+        </li>
+        <li> <b>Proposition:</b>  Hashin-Shtrikman Bounds are rational function with
+             <span class="if"> A = 0 </span>, i.e.,
+             <p></p>
+             <div class="cf">
+                    $\mu_{LB}^{HS}, \mu_{UB}^{HS}, \kappa_{LB}^{HS}, \kappa_{UB}^{HS} \in \mathcal{R}$
+             <div>
+        </li>
+    </ul>
+    </div>
+
+</section>
+
+<section>
+        <h5>SIMP-ALL interpolation</h5>
+        <ul>
+        <li style="font-size:0.8em;"><b>Definition:</b> SIMP-ALL interpolations
+                <span class="if">$\mu_{SA}, \kappa_{SA} \in \mathcal{R}$</span>
+                are defined as rational functions with the coeficients
+                <span class="if">$A,B,C,D$</span>
+                such that
+       <p></p>
+        <div class="cf"; style="width:80%" >
+                $
+                \left \{ \begin{split}
+                \mu_{SA}(0)    &= \mu_0 \\
+                \mu_{SA}(1)    &= \mu_1 \\
+                \mu_{SA}{'}(0) &= \mu_{LB}^{HS}{'}(0) =  d\mu_0  \\
+                \mu_{SA}{'}(1) &= \mu_{UB}^{HS}{'}(1) =  d\mu_1
+                \end{split}
+                \right.
+
+                \quad
+                \left \{
+                \begin{split}
+                \kappa_{SA}(0)    &= \kappa_0 \\
+                \kappa_{SA}(1)    &= \kappa_1 \\
+                \kappa_{SA}{'}(0) &= \kappa_{LB}^{HS}{'}(0) =  d\kappa_0  \\
+                \kappa_{SA}{'}(1) &= \kappa_{UB}^{HS}{'}(1) =  d\kappa_1
+                \end{split}
+                \right.
+                $
+            </div>
+        </li>
+        <li style="font-size:0.8em;"> SIMP-ALL in compact form
+        <div class="cf"; style="font-size:0.8em;width:80%">
+        \begin{equation}
+          \begin{array}{rcl}
+            \mu_{\small{SA}}(\rho) &=&\dfrac{(\mu_1 - \mu_0)(\eta_{\mu_0} - \eta_{\mu_1})(1-\rho)\rho + \mu_0 (\mu_1 + \eta_{\mu_0}) (1-\rho) + \mu_1 (\mu_0 + \eta_{\mu_1}) \rho }{(\mu_1 + \eta_{\mu_0})(1-\rho) + (\mu_0 + \eta_{\mu_1}) \rho} \\
+            \kappa_{\small{SA}}(\rho) &=&\dfrac{(\kappa_1 - \kappa_0)(\eta_{\kappa_0} - \eta_{\kappa_1})(1-\rho)\rho + \kappa_0 (\kappa_1 + \eta_{\kappa_0}) (1-\rho) + \kappa_1 (\kappa_0 + \eta_{\kappa_1}) \rho }{(\kappa_1 + \eta_{\kappa_0})(1-\rho) + (\kappa_0 + \eta_{\kappa_1}) \rho} \\ \\
+          \end{array}
+        \end{equation}
+        where $\eta_{\mu_0}=\frac{\kappa_{0}\mu_{0}}{2\mu_{0}+\kappa_{0}}$, $\eta_{\mu_1}=\frac{\kappa_{1}\mu_{1}}{2\mu_{1}+\kappa_{1}}$, $\eta_{\kappa_0}=\mu_{0}$ and $\eta_{\kappa_1}=\mu_{1}$.
+</div>
+</li>
+
+        </ul>
+
+</section>

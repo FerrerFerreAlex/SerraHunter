@@ -1,0 +1,139 @@
+<section>
+    <div>
+        <h3>Level-set: numerical aspects</h3>
+    </div>
+    <div class="fragment container" ;data-fragment-index="1" ;>
+        <img style="border: none;box-shadow: none;height: 70%;" src="/img/numericalIntergration/LevelSetCut.png" />
+        <div>
+</section>
+
+
+
+<section>
+    <div>
+        <h3>Level-set: numerical aspects</h3>
+    </div>
+    <div style="position: absolute; left:-10%;width: 130%; height: 500%; top:100%;">
+        <div style="float:left; width:36%" ; class="fragment" ; data-fragment-index="1"><img style="border: none;box-shadow: none;"
+                src="/img/numericalIntergration/LevelSetCut2D.png" /></div>
+        <div style="float:left; width:30%" ; class="fragment" ; data-fragment-index="2"><img style="border: none;box-shadow: none;"
+                src="/img/numericalIntergration/LevelSet2DApprox.png" /></div>
+        <div style="float:left; width:30%" ; class="fragment" ; data-fragment-index="3"><img style="border: none;box-shadow: none;"
+                src="/img/numericalIntergration/LevelSetGaussPoints.png" /></div>
+    </div>
+    <div style="position: absolute; width:50%;left:30%;top:350%;font-size: 0.8em;">
+        <p class="fragment" ; data-fragment-index="2" ;><b>Delaunay trianglation</b> or precompute $2^4=16$ cases
+            (Marching-cubes) </p>
+    </div>
+</section>
+
+
+
+<section>
+    <div>
+        <h3>Level-set: numerical aspects (3D)</h3>
+    </div>
+    <div style="position: absolute; left:0%;width: 130%; height: 500%; top:90%;">
+        <div style="float:left; width:22%" ; class="fragment" ; data-fragment-index="1"><img style="border: none;box-shadow: none;"
+                src="/img/numericalIntergration/interior_cut_subcells_1.png" /></div>
+        <div style="float:left; margin-left: -2%;width:35%;" ; class="fragment" ; data-fragment-index="2"><img style="border: none;box-shadow: none;"
+                src="/img/numericalIntergration/LevelSet3D.png" /></div>
+        <div style="float:left; margin-left: -5%;width:35%;" ; class="fragment" ; data-fragment-index="3"><img style="border: none;box-shadow: none;"
+                src="/img/numericalIntergration/LevelSetGaussPoints3D.png" /></div>
+    </div>
+    <div style="position: absolute; width:100%;left:0%;top:350%;font-size: 0.7em;">
+        <p class="fragment" ; data-fragment-index="5" ;><b>Delaunay trianglation</b> or precompute $2^{12}=4096$ cases
+            (Marching-cubes) </p>
+    </div>
+    <div style="position: absolute; width:100%;left:0%;top:390%;font-size: 0.7em;">
+        <p class="fragment" ; data-fragment-index="6" ;>In fact: not enough </p>
+    </div>
+</section>
+
+
+
+<section>
+    <div>
+        <h3>Level-set: numerical aspects (3D)</h3>
+        <h4>Surface integral</h4>
+    </div>
+    <div style="position: absolute; left:0%;width: 130%; height: 500%; top:100%;">
+        <div style="float:left; width:20%" ; class="fragment" ; data-fragment-index="1"><img style="border: none;box-shadow: none;"
+                src="/img/numericalIntergration//3Dfacets_gauss_1.png" /></div>
+        <div style="float:left; width:20%" ; class="fragment" ; data-fragment-index="2"><img style="border: none;box-shadow: none;"
+                src="/img/numericalIntergration/3Dfacets_gauss_2.png" /></div>
+        <div style="float:left; width:20%" ; class="fragment" ; data-fragment-index="3"><img style="border: none;box-shadow: none;"
+                src="/img/numericalIntergration/3Dfacets_gauss_4.png" /></div>
+        <div style="float:left; width:20%" ; class="fragment" ; data-fragment-index="4"><img style="border: none;box-shadow: none;"
+                src="/img/numericalIntergration/3Dfacets_gauss_5.png" /></div>
+    </div>
+</section>
+
+
+<section>
+    <h3>Validation of cut-cell integration</h3>
+    <div style="position: absolute; width:100%;left:0%;top:50%;font-size: 0.7em;">
+        <p class="fragment" ; data-fragment-index="1" ;>Circle case</p>
+    </div>
+    <div style="position: absolute; left:0%; width:110%;height: 500%; top:100%;">
+        <div style="float:left; width:50%" ; class="fragment" ; data-fragment-index="2"><img style="border: none;box-shadow: none;"
+                src="/img/numericalIntergration/CirclePerimeter.png" /></div>
+        <div style="float:left; width:50%" ; class="fragment" ; data-fragment-index="2"><img style="border: none;box-shadow: none;"
+                src="/img/numericalIntergration/circle_validation.png" /></div>
+    </div>
+</section>
+
+
+
+<section>
+    <div>
+        <h3>Validation of cut-cell integration</h3>
+    </div>
+    <div style="position: absolute; left:0%;; height: 500%; top:100%;">
+        <div style="width: 40%; height: 60%;" ;>
+            <div style="float:left; width:50%" ; class="fragment" ; data-fragment-index="1" ;>
+                <img style="border: none;box-shadow: none;" src="/img/numericalIntergration/cylinder_2.png" />
+            </div>
+            <div style="float:left; width:50%" ; class="fragment" ; data-fragment-index="2" ;>
+                <img style="border: none;box-shadow: none;" src="/img/numericalIntergration/cylinder_3.png" />
+            </div>
+            <div style="float:left; width:50%" ; class="fragment" ; data-fragment-index="3" ;>
+                <img style="border: none;box-shadow: none;" src="/img/numericalIntergration/cylinder_8.png" />
+            </div>
+            <div style="float:left; width:50%" ; class="fragment" ; data-fragment-index="4" ;>
+                <img style="border: none;box-shadow: none;" src="/img/numericalIntergration/cylinder_32.png" />
+            </div>
+        </div>
+        <div class="box2 middle fragment" ; data-fragment-index="5">
+            <img style="border: none;box-shadow: none;" src="/img/numericalIntergration/cylinder_surface_convergence.png" />
+        </div>
+    </div>
+</section>
+
+
+
+
+<section>
+    <div style="position:absolute;top:-90%;"; class="center">
+    <h3>FEM-MAT-OO</h3>
+    </div>
+    <div style="position:absolute;top:0%">
+    <ul style="margin: 40px 0;">
+        <li class="fragment" ;data-fragment-index="1";><b>FEM-MAT-OO</b>: Finite element method in Matlab Object
+            Oriented</li>
+        <li class="fragment" ;data-fragment-index="2";><b>Features</b>:
+            <ul style="list-style: circle; ">
+                <li> Object oriented.</li>
+                <li> Lagrangian finite elements</li>
+                <li> Elasticity, cell-problem, Stokes, Poisson...</li>
+                <li> Density-like algorithms: projected gradient, IPOPT, MMA... </li>
+                <li> Level-set algorithms: Slerp, Hamilton-Jacobi, Projected-slerp</li>
+                <li> Filters (P1/P0/PDE), Perimeter</li>
+                <li> Other numerical techniques: incremental scheme, stl output files...</li>
+            </ul>
+        </li>
+        <li class="fragment" ;data-fragment-index="3"><b>Github</b>: <a href="https://github.com/FerrerFerreAlex/FEM-MAT-OO">https://github.com/FerrerFerreAlex/FEM-MAT-OO</a>
+        </li>
+    </ul>
+   </div>
+</section>
