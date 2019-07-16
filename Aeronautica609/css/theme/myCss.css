@@ -80,6 +80,11 @@ body {
   text-transform: capitalize;
 }
 
+.reveal h5 {
+  font-size: 0.9em;
+  text-transform: capitalize;
+}
+
 .reveal h1 {
   text-shadow: none;
 }
@@ -491,12 +496,20 @@ body {
   width: 100%;
   position:relative;
   /* border: 3px solid #73AD21; */
-  /* margin: auto; */
+  margin: auto;
   /* clear: both; */
-  /* display: table; */
+  display: table;
 }
 
 .reveal .myLi {
- font-size: 0.6em;
+ font-size: 90%;
   margin:15px;
+  /* border: 3px solid #73AD21; */
+
+}
+
+.reveal .myUl {
+ font-size: 80%;
+  margin:25px;
+  /* border: 3px solid #73AD21; */
 }
