@@ -1,0 +1,949 @@
+<section>
+
+  <h3>Topology Optimization</h3>
+
+</section>
+
+
+<section>
+  <h5>Optimal Structural Design</h5>
+  <ul style="list-style: none;font-size:60%;">
+    <li class="fragment" ;data-fragment-index="1">
+      Given certain structural problem (domain + boundary conditions)
+      <ul style="list-style: none; text-align:center">
+        <li>
+          <img style="border: none;box-shadow: none;  width:300px;" ; src="/img/FuerzasTopOpt.svg" />
+        </li>
+      </ul>
+    </li>
+    <li class="fragment" ;data-fragment-index="2" ; style="transform: translateY(-20%);">
+      and losing the minimum amount of stiffness, where should we remove material from?
+      <ul style="list-style: none; text-align:center">
+        <li>
+          <img style="border: none;box-shadow: none;  width:300px;position: relative; top:-60px;z-index: -1;transform: translateY(10%);" ; src="/img/FuerzasTopOptHole.svg" />
+        </li>
+      </ul>
+    </li>
+  </ul>
+</section>
+
+
+
+
+
+<section>
+  <div style="position:relative;margin: auto; font-size:35px;">
+    <h4>Exact shape optimization problem</h4>
+  </div>
+  <div>
+    <ul style="position:relative; width: 100%; font-size: 60%;transform: translateY(-5%);">
+      <li class="fragment" ; data-fragment-index="1" ;> Formulation: find an optimal shape $\Omega
+        \Subset D$ such that
+        <div style="width: 100%; position:relative; left:-20%;margin:10px;font-size: 0.8em;">
+          \begin{equation*}
+          \begin{aligned}
+          & \underset{\Omega \in \mathcal{U_{ad}}}{\text{min}} & J(\Omega):= C(\Omega) +
+          l \ \text{Vol}(\Omega)
+          \end{aligned}
+          \end{equation*}
+        </div>
+      </li>
+      <li class="fragment" ; data-fragment-index="2" ;> $\mathcal{U_{ad}}$ is the set of admissible
+        shapes (smooth).
+      </li>
+      <li class="fragment" ; data-fragment-index="3" ;> $C(\Omega)$ is the compliance of the
+        structure D, i.e.:
+        <div style="width: 95%; position:relative; ;font-size: 0.8em;">
+          \begin{equation*}
+          \begin{aligned}
+          & C(\Omega) = \int_{\Omega} A_{\Omega} e(u_{\Omega}):e(u_{\Omega}) d{\Omega} =
+          \int_{\Gamma} g u_\Omega
+          \end{aligned}
+          \end{equation*}
+        </div>
+        <div style="transform: translateY(20%);">where $u_{\Omega}$ is solution in $H_0^1$ of (elasticity): </div>
+        <div style="width: 100%; position: relative; margin:10px;font-size: 0.8em;transform: translateY(40%);">
+          $
+          \left \{
+          \begin{split}- \nabla \cdot (A_{\Omega} e(u_{\Omega})) &= f \quad {\rm in} \ \Omega, \\
+          u &= 0 \quad {\rm on} \ \Gamma_{D}, \\
+          A_{\Omega} e(u_{\Omega}) \cdot n &= g \quad {\rm on} \ \Gamma_{N}. \\\end{split}
+          \right.
+          \quad \text{with} \quad
+          \color{blue}{A_{\Omega} = (1 - \chi_\Omega)A_0 + \chi_\Omega A_1} \\
+          $
+        </div>
+      </li>
+      <li style="position:relative; width:100%" ; class="fragment" ; data-fragment-index="4" ;>
+        <span class="if">$\text{Vol}(\Omega)$ </span> is the volume of the structure:
+        <span class="if">$\text{Vol}(\Omega) =
+          \int_{\Omega} \chi_\Omega d{\Omega}$</span>
+      </li>
+
+    </ul>
+  </div>
+  <div class="fragment" ; data-fragment-index="1" ; style="position:absolute; width: 70%; right:-20%; top:10%">
+    <img style="border: none;box-shadow: none;" src="/img/problemFormulation.svg" /></div>
+  </div>
+
+</section>
+
+
+
+<section>
+  <div style="position:relative;margin: auto; font-size:35px;transform: translateY(-10%);">
+    <h4>Shape derivative</h4>
+  </div>
+  <div>
+    <ul style="position:relative; width: 90%; font-size: 60%;transform: translateY(-10%);">
+
+      <li>
+        <div class="fragment" ; data-fragment-index="1" ;> Hadamard's boundary variation
+          method:
+          <span style="font-size: 0.8em;">
+            $
+            \Omega \mapsto \Omega_{\theta} := (Id + \theta)(\Omega)
+            $
+          </span>
+          for small <span style="font-size: 0.8em;">$\theta \in
+            W^{1,\infty}(\mathbb{R}^d,\mathbb{R}^d)$.</span> </div>
+      </li>
+      <li class="fragment" ; data-fragment-index="2" ;><b>Definition:</b> A functional $F(\Omega)$ is
+        shape differentiable at $\Omega$ if the mapping
+        <span style="font-size: 0.8em;">$\theta \mapsto F(\theta)$</span> is
+        Fréchet-differentiable at 0, i.e.,
+        <div style="position: relative; width: 100%; left:10%; margin:10px;font-size: 0.8em;">
+          $$F(\Omega_{\theta}) = F(\Omega) + F'(\Omega)(\theta) + o(||\theta||).$$
+        </div>
+        where in practice <span style="font-size: 0.8em;">$\theta \in
+          W^{1,\infty}(\mathbb{R}^d,\mathbb{R}^d)$</span> is restricted to the set of
+        admissible perturbations.
+      </li>
+
+      <li class="fragment" ; data-fragment-index="3" ;>
+        <b>Theorem:</b> $C(\Omega)$ is shape differentiable at any $\Omega \in
+        \mathcal{U}_{ad}$ with shape derivative
+        <div style="width: 100%; float:left; margin:10px;font-size: 0.8em;">
+          $$C'(\Omega)(\theta) = \int_{\Gamma}{\color{blue}{g_{\Omega}^s} \theta \cdot n \ d\Gamma}$$
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="fragment" ; data-fragment-index="1" ; style="position:absolute; width: 20%; right:-10%; top:30%">
+    <img style="border: none;box-shadow: none;" src="/img/ShapeDerivative.png" /></div>
+  </div>
+</section>
+
+
+<section>
+  <div style="position:absolute;top:-100%;left:25%">
+    <h4>Topological derivative</h4>
+  </div>
+  <div style="position:absolute; left:-5%; top:-0%; width: 100%; font-size: 80%;">
+    <ul>
+      <li>
+        <div class="fragment" ; data-fragment-index="1" ;>
+          <b>Sensitivity</b> of a functional when:
+          <ul style="font-size: 80%">
+            <li>adding a small bubble:
+              <span style="font-size: 0.8em;"> $\Omega \mapsto \Omega_{x,r}
+                := \Omega \cup B(x,r)$</span> for <span style="font-size: 0.8em;">
+                $x \notin \overline{\Omega}$</span>
+            </li>
+
+            <li>nucleating a small hole:
+              <span style="font-size: 0.8em;"> $\Omega \mapsto \Omega_{x,r}
+                := \Omega \setminus\overline{B(x,r)}$</span> for <span style="font-size: 0.8em;"> $x \in \Omega$</span>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <p></p>
+      </br>
+      <li class="fragment" ; data-fragment-index="2" ; style="transform: translateY(-20%);">
+        <b>Definition:</b> A functional <span style="">$F(\Omega)$</span>
+        has a topological derivative at
+        <span style="font-size: 0.8em;">$x \in \Omega^0 \cup \Omega^1$</span>
+        if there exist the following asymptotic expansion
+        <div style="width: 100%; float:left; margin:10px;font-size: 0.8em;">
+          $$F(\Omega_{r,x}) = F(\Omega) + s_{\Omega}(x) \color{blue}{g_{\Omega}^T(x)} |B(x,r)| +
+          o(|B(x,r)|).$$
+        </div>
+        <div> where
+          <span style="font-size: 0.8em;">$s_\Omega(x)=1$</span> when <span style="font-size: 0.8em;">$x\in
+            \Omega^0$</span> and
+          <span style="font-size: 0.8em;">$s_\Omega(x)=-1$</span> when <span style="font-size: 0.8em;">
+            $x\in \Omega^1$.</span>
+      </li>
+    </ul>
+  </div>
+  <div class="fragment" ; data-fragment-index="1" ; style="position:absolute; width: 35%; right:5%; top:-00%">
+    <img style="border: none;box-shadow: none;" src="/img/TopologicalDerivative.png" /></div>
+  </div>
+</section>
+
+
+<!-- <section>
+        <div style="position:absolute;top:-300%;left:25%">
+                <h4>Topological derivative</h4>
+        </div>
+        <div style="position:absolute; left:-5%; top:-50%; width: 100%; font-size: 35px;">
+                <ul>
+                        <li>
+                                <b>Theorem:</b> <span style="font-size: 0.8em;">$C(\Omega)$</span> has a topological derivative
+                                <span style="font-size: 0.8em;">$g_{\Omega}^T(x)$</span>  at any $\Omega \in \mathcal{U}_{ad}$ that reads as follows
+                                <div style="width: 100%; float:left; margin:10px;font-size: 0.8em;">
+                                        $$g_{\Omega}^T(x) = \mathbb{P}\sigma(u_{\Omega}(x)):e(u_{\Omega}(x))$$
+                                </div>
+                                <div>with <span style="font-size: 0.8em;">$\mathbb{P} = p_{1}\mathbb{I}+p_{2}I\otimes I$</span> and </div>
+                                <span style="width: 100%; float:left; margin:10px;font-size: 0.8em;">
+                                                \begin{eqnarray}
+                                                p_{1}=\frac{1}{\beta\gamma+\tau_{1}}(1+\beta)(\tau_{1}-\gamma) & &\text{and}&  & p_{2}=\frac{1}{2}\frac{(\alpha-\beta)}{\beta\gamma+\tau_{1}}\frac{\left[\gamma(\gamma-2\tau_{3})+\tau_{1}\tau_{2}\right]}{\alpha\gamma+\tau_{2}}\label{eq:p1_p2_coef}
+                                              \end{eqnarray}
+                                </span>
+                                <div > where
+                                <span style="width: 100%; float:left; margin:10px;font-size: 0.8em;">
+                                                \begin{equation}
+                                                \alpha=\frac{1+\nu^{m}}{1-\nu^{m}},\,\beta=\frac{3-\nu^{m}}{1+\nu^{m}},\,\gamma=\frac{E^{i}}{E^{m}},\,
+                                              \end{equation}
+                                </span>
+                                <span style="width: 100%; float:left; margin:10px;font-size: 0.8em;">
+                                                \begin{equation}
+  \tau_{1}=\frac{1+\nu^{i}}{1+\nu^{m}},,\,\tau_{2}=\frac{1-\nu^{i}}{1-\nu^{m}}\quad\text{and}\quad\tau_{3}=\frac{\nu^{i}(3\nu^{m}-4)+1}{\nu^{m}(3\nu^{m}-4)+1}.\,\label{eq:all_coef_TD-1}
+\end{equation}
+                                </span>
+
+
+
+                                </div>
+                                <div style="width: 100%; float:left; margin:10px;font-size: 0.8em;">
+                                 </div>
+                        </li>
+                </ul>
+        </div>
+</section> -->
+
+
+<section>
+  <style>
+    ol.alphaList {
+      list-style-type: lower-roman;
+    }
+  </style>
+  <div style="position:absolute;top:-100%;left:25%">
+    <h4>Optimality conditions</h4>
+  </div>
+  <div style="position:absolute; left:-5%; top:-50%; width: 100%; font-size: 35px;">
+    <ul>
+
+      <li class="fragment" ; data-fragment-index="1" ;><b>Definition:</b> A shape
+
+        <span style="font-size: 0.8em;">$\Omega \in \mathcal{U}_{ad}$ </span>
+        is a local minimum of a function
+        <span style="font-size: 0.8em;">$F(\Omega)$</span>
+        if
+        <ul style="font-size:12">
+          <li>
+            For any point
+            <span style="font-size: 0.8em;">$x \in \Omega^0 \cup \Omega^1$ </span>
+            for
+            <span style="font-size: 0.8em;">$r>0$ </span>
+            small enough,
+            <span style="font-size: 0.8em;">$F(\Omega_{x,r}) \geq F(\Omega)$ </span>
+          </li>
+          <li>
+            For any small vector field
+            <span style="font-size: 0.8em;">$\theta, F(\Omega_{\theta}) \geq F(\Omega) $ </span>
+          </li>
+        </ul>
+
+      </li>
+      <p></p>
+      <li class="fragment" ; data-fragment-index="1" ;><b>Proposition:</b> Let
+        <span style="font-size: 0.8em;">
+          $\Omega \in \mathcal{U}_{ad}$
+        </span>
+        be a local minimizer of the cost
+        <span style="font-size: 0.8em;">$ J(\Omega)$</span>
+        then
+        <p></p>
+        <ol class="alphaList" ; style="position:relative; margin: auto; width: 50%">
+          <li><span style="font-size: 0.8em;">
+              $\forall x \in \Omega^1, g_{\Omega}^T(x)\leq0$
+            </span></li>
+          <li><span style="font-size: 0.8em;">
+              $\forall x \in \Gamma, g_{\Omega}^s(x)=0$
+            </span></li>
+          <li><span style="font-size: 0.8em;">
+              $\forall x \in \Omega^0, g_{\Omega}^T(x)\geq0$
+            </span></li>
+        </ol>
+
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<section>
+  <h4>Smooth density optimization problem</h4>
+  <ul style="font-size:80%">
+    <li class="fragment" ; data-fragment-index="1">
+      <div> We replace
+        <span style="font-size: 0.8em;">$\chi_{\Omega}$</span>
+        by the density function
+        <span style="font-size: 0.8em;">$\rho \in L^{\infty}(D,[0,1])$</span>
+      </div>
+    </li>
+    <li class="fragment" ; data-fragment-index="2">
+      The smoothed elastic parameters are considered as:
+      <div style="position:relative; font-size: 0.8em; left: 25%; width:60%">$\color{blue}\mu(\rho) =
+        [1-\zeta(L_{\varepsilon}(\rho))]\mu_0 + \zeta(L_{\varepsilon}(\rho)) \mu_1 $</div>
+      <div style="position:relative; font-size: 0.8em; left: 25%; width:60%">$\color{blue}\kappa(\rho) =
+        [1-\zeta(L_{\varepsilon}(\rho))]\kappa_0 + \zeta(L_{\varepsilon}(\rho)) \kappa_1 $</div>
+    </li>
+    <li class="fragment" ; data-fragment-index="3">
+      <span style="font-size: 0.8em;">$\color{blue}{L_{\varepsilon}}: L^2(D) \rightarrow L^{\infty}(D) $</span>
+      is a smoothing operator.
+    </li>
+    <li class="fragment" ; data-fragment-index="4">
+
+      <span style="font-size: 0.8em;">$\zeta: \mathbb{R} \rightarrow \mathbb{R}$ </span>
+      is an smooth interpolation function such that
+      <div style="position:relative; font-size: 0.8em; left: 25%; width:60%;"">$\zeta(0) = 0 \quad \text{and} \quad
+                \zeta(1) = 1$</div>
+        </li>
+    </ul>
+
+</section>
+
+<section>
+    <div style=" position:absolute;top:-100%;left:5%">
+        <h4>Smooth density optimization problem</h4>
+      </div>
+      <div style="position:absolute; left:-5%; top:-50%; width: 100%; font-size: 80%;">
+        <ul>
+          <li class="fragment" ; data-fragment-index="1" ;> Formulation: find a density
+            <span style="font-size: 0.8em;">$\rho \in \mathcal{K}$ </span>
+            such that
+            <div style="width: 100%; position:relative; left:0%;font-size: 0.8em;transform: translateY(20%) ">
+              \begin{equation*}
+              \begin{aligned}
+              & \underset{\rho \in \mathcal{K}}{\text{min}} & J_{\varepsilon}(\rho):= C_{\varepsilon}(\rho) +
+              l \ \text{Vol}_{\varepsilon}(\rho)
+              \end{aligned}
+              \end{equation*}
+            </div>
+          </li>
+          <li class="fragment" ; data-fragment-index="2" ;>
+            <span style="font-size: 0.8em;">$\mathcal{K}:= L^\infty(D,[0,1])$</span>
+            is the closed convex subset of
+            <span style="font-size: 0.8em;">$L^2(D)$</span>
+            of density functions
+          </li>
+          <li class="fragment" ; data-fragment-index="3" ;>
+            The approximate compliance is
+            <p></p>
+            <div style="width: 40%; position: relative; left:20%;font-size: 0.8em;">
+              $C_\varepsilon(\rho) = \int_{D} A_{\rho,\varepsilon}
+              e(u_{\rho,\varepsilon}):e(u_{\rho,\varepsilon}) d{\Omega} =
+              \int_{\Gamma_N} g u_{\rho,\varepsilon}$ </div>
+            <p></p>
+            <div>where $u_{\Omega}$ is solution in $H^1$ of (elasticity): </div>
+            <div style="width: 100%; position:relative; margin:10px;font-size: 0.8em;">
+              $
+              \left \{
+              \begin{split}- \nabla \cdot (A_{\rho,\varepsilon} e(u_{\rho,\varepsilon})) &= f \quad {\rm in} \ D,
+              \\
+              u_{\rho,\varepsilon} &= 0 \quad {\rm on} \ \Gamma_{D}, \\
+              A_{\rho,\varepsilon} e(u_{\rho,\varepsilon}) \cdot n &= g \quad {\rm on} \ \Gamma_{N}.
+              \\\end{split}
+              \right.
+              \quad
+              \text{with}
+              \quad
+              \color{blue}{A_{\rho,\varepsilon} = 2\mu(\rho) \mathbb{I} + (\kappa(\rho) - \mu(\rho)) \mathbf {I} \otimes
+              \mathbf {I}}
+              $
+            </div>
+          </li>
+          <li class="fragment" ; data-fragment-index="4" ;>
+            The approximate volume of the structure:
+            <span style="font-size: 0.8em;">$\text{Vol}(\rho) =
+              \int_{\Omega} L_\varepsilon (\rho) d{\Omega}$</span>
+          </li>
+        </ul>
+      </div>
+</section>
+
+<section>
+  <div style="position:relative;top:-60%">
+    <h4>Density-like algorithms</h4>
+  </div>
+  <div style="position:relative;top:0%;left:0%; font-size:80%">
+    <ul>
+      <li class="fragment" ; data-fragment-index="1" ;><b>Projected gradient:</b> One of the most natural and simple approach is to update
+        <span style="font-size: 0.8em;">$\rho_k $ </span>
+        with a projected descent direction and a line-search
+        <span style="font-size: 0.8em;">$\alpha $ </span>
+        scheme (backtracking) as follows
+        <div style="position:relative; width:100%; font-size: 0.8em; left:20%">
+          <p></p>
+          $\rho_{k+1} = \text{max}(0,\text{min}(1,\rho_{k} - \alpha g_k))$
+        </div>
+        <p></p>
+      </li>
+      <li class="fragment" ; data-fragment-index="2">In practice the volume is considered as a constraint and an Augmented Lagrangian scheme is used </li>
+      <li class="fragment" ; data-fragment-index="3" ;>Other algorithms:
+        <ul>
+          <li><b>Ipopt:</b> Interior point method. Large gray regions appear during the optimization process </li>
+          <li><b>MMA:</b>Methods of moving asymptotes. So much used in the literature, not always converging</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+</section>
+
+
+
+
+<section>
+  <div style="position:relative;top:-60%">
+    <h4>Level-set type algorithm</h4>
+  </div>
+  <div style="position:relative;top:-10%;left:0%; font-size:70%;transform: translateY(-5%);">
+    <ul>
+      <li class="fragment" ; data-fragment-index="1" ;><b>SLERP:</b> Spherical linear interpolation (Amstutz 2006).</li>
+      <li class="fragment" ; data-fragment-index="2"> The level-set
+        <span style="font-size: 0.8em;">$\psi $ </span>
+        is defined as follows:
+        <span style="font-size: 0.8em;">
+          \begin{equation*}
+          \psi(x) = \left \{
+          \begin{split}
+          < 0 \quad \text{if} \quad x \in \Omega^1 \\> 0 \quad \text{if} \quad x \in \Omega^0 \\
+            \end{split}
+            \right.
+            \end{equation*}
+        </span>
+      </li>
+      <li class="fragment" ; data-fragment-index="3"> We recall that in the optimality conditions for the exact shape optimization problem, we have
+        <span style="font-size: 0.8em;">
+          \begin{equation*}
+          \left \{
+          \begin{split}
+          g_{\Omega}^T < 0 \quad \text{if} \quad x \in \Omega^1 \\ g_\Omega^T> 0 \quad \text{if} \quad x \in \Omega^0 \\
+            \end{split}
+            \right.
+            \end{equation*}
+        </span>
+      </li>
+      <li class="fragment" ; data-fragment-index="4"><b>Fixed point algorithm</b>: the idea is to impose
+        <span style="font-size: 0.8em;">$\forall x \in \Omega^0 \cup \Omega^1 $ </span>
+        <p></p>
+        <span style="font-size: 0.8em;">
+          \begin{equation*} \psi_{k+1} = g_{\Omega}^T(\psi_k) \end{equation*}
+        </span>
+        <p></p>
+      </li>
+      <li class="fragment" ; data-fragment-index="5">Usually the level-set is imposed to be bounded (i.e. $||\psi_k|| = 1$)</li>
+    </ul>
+  </div>
+</section>
+
+
+<section>
+  <div style="position:absolute;top:-5%;left:30%">
+    <h4>Level-set type algorithm</h4>
+  </div>
+  <div>
+    <ul style="font-size:70%">
+      <li>The update scheme is as follows:
+        <span style="font-size: 0.8em;">$\forall x \in \Omega^0 \cup \Omega^1 $ </span>
+        <p></p>
+        <span style="font-size: 0.8em;">
+          \begin{equation*} \psi_{k+1} =
+          \frac{ \sin(\kappa \theta_k)}{\sin( \theta_k)}\psi_{k} +
+          \frac{1 - \sin(\kappa \theta_k)}{\sin( \theta_k)}g_{k}
+          \end{equation*}
+        </span>
+        <p></p>
+        where <span style="font-size: 0.8em;">$\theta = \frac{(\psi,g)}{||g||}$ </span> and
+        <span style="font-size: 0.8em;">$\kappa$ </span> place the role of a line search (back-tracking).
+      </li>
+
+    </ul>
+  </div>
+  <div><img style="border: none;box-shadow: none;width:80%" src="/img/SLERP.png" /> </div>
+
+</section>
+
+<section>
+  <div>
+    <h4>Level-set: numerical aspects</h4>
+  </div>
+  <div class="fragment container" ;data-fragment-index="1" ;>
+    <img style="border: none;box-shadow: none;height: 70%;" src="/img/numericalIntergration/LevelSetCut.png" />
+    <div>
+</section>
+
+
+
+<section>
+  <div>
+    <h4>Level-set: numerical aspects</h4>
+  </div>
+  <div style="position: absolute; left:-10%;width: 130%; height: 500%; top:100%;">
+    <div style="float:left; width:36%" ; class="fragment" ; data-fragment-index="1"><img style="border: none;box-shadow: none;" src="/img/numericalIntergration/LevelSetCut2D.png" /></div>
+    <div style="float:left; width:30%" ; class="fragment" ; data-fragment-index="2"><img style="border: none;box-shadow: none;" src="/img/numericalIntergration/LevelSet2DApprox.png" /></div>
+    <div style="float:left; width:30%" ; class="fragment" ; data-fragment-index="3"><img style="border: none;box-shadow: none;" src="/img/numericalIntergration/LevelSetGaussPoints.png" /></div>
+  </div>
+  <div style="position: absolute; width:50%;left:30%;top:350%;font-size: 0.8em;">
+    <p class="fragment" ; data-fragment-index="2" ;><b>Delaunay trianglation</b> or precompute $2^4=16$ cases
+      (Marching-cubes) </p>
+  </div>
+</section>
+
+
+
+<section>
+  <div>
+    <h4>Level-set: numerical aspects (3D)</h4>
+  </div>
+  <div style="position: absolute; left:0%;width: 130%; height: 500%; top:90%;">
+    <div style="float:left; width:22%" ; class="fragment" ; data-fragment-index="1"><img style="border: none;box-shadow: none;" src="/img/numericalIntergration/interior_cut_subcells_1.png" /></div>
+    <div style="float:left; margin-left: -2%;width:35%;" ; class="fragment" ; data-fragment-index="2"><img style="border: none;box-shadow: none;" src="/img/numericalIntergration/LevelSet3D.png" /></div>
+    <div style="float:left; margin-left: -5%;width:35%;" ; class="fragment" ; data-fragment-index="3"><img style="border: none;box-shadow: none;" src="/img/numericalIntergration/LevelSetGaussPoints3D.png" /></div>
+  </div>
+  <div style="position: absolute; width:100%;left:0%;top:350%;font-size: 0.7em;">
+    <p class="fragment" ; data-fragment-index="5" ;><b>Delaunay trianglation</b> or precompute $2^{12}=4096$ cases
+      (Marching-cubes) </p>
+  </div>
+  <div style="position: absolute; width:100%;left:0%;top:390%;font-size: 0.7em;">
+    <p class="fragment" ; data-fragment-index="6" ;>In fact: not enough </p>
+  </div>
+</section>
+
+
+
+<section>
+  <div>
+    <h4>Level-set: numerical aspects (3D)</h4>
+    <h4>Surface integral</h4>
+  </div>
+  <div style="position: absolute; left:0%;width: 130%; height: 500%; top:100%;">
+    <div style="float:left; width:20%" ; class="fragment" ; data-fragment-index="1"><img style="border: none;box-shadow: none;" src="/img/numericalIntergration//3Dfacets_gauss_1.png" /></div>
+    <div style="float:left; width:20%" ; class="fragment" ; data-fragment-index="2"><img style="border: none;box-shadow: none;" src="/img/numericalIntergration/3Dfacets_gauss_2.png" /></div>
+    <div style="float:left; width:20%" ; class="fragment" ; data-fragment-index="3"><img style="border: none;box-shadow: none;" src="/img/numericalIntergration/3Dfacets_gauss_4.png" /></div>
+    <div style="float:left; width:20%" ; class="fragment" ; data-fragment-index="4"><img style="border: none;box-shadow: none;" src="/img/numericalIntergration/3Dfacets_gauss_5.png" /></div>
+  </div>
+</section>
+
+
+<section>
+  <h4>Validation of cut-cell integration</h4>
+  <div style="position: absolute; width:100%;left:0%;top:50%;font-size: 0.7em;">
+    <p class="fragment" ; data-fragment-index="1" ;>Circle case</p>
+  </div>
+  <div style="position: absolute; left:0%; width:110%;height: 500%; top:100%;">
+    <div style="float:left; width:50%" ; class="fragment" ; data-fragment-index="2"><img style="border: none;box-shadow: none;" src="/img/numericalIntergration/CirclePerimeter.png" /></div>
+    <div style="float:left; width:50%" ; class="fragment" ; data-fragment-index="2"><img style="border: none;box-shadow: none;" src="/img/numericalIntergration/circle_validation.png" /></div>
+  </div>
+</section>
+
+
+
+<section>
+  <div>
+    <h4>Validation of cut-cell integration</h4>
+  </div>
+  <div style="position: absolute; left:0%;; height: 500%; top:100%;">
+    <div style="width: 40%; height: 60%;" ;>
+      <div style="float:left; width:50%" ; class="fragment" ; data-fragment-index="1" ;>
+        <img style="border: none;box-shadow: none;" src="/img/numericalIntergration/cylinder_2.png" />
+      </div>
+      <div style="float:left; width:50%" ; class="fragment" ; data-fragment-index="2" ;>
+        <img style="border: none;box-shadow: none;" src="/img/numericalIntergration/cylinder_3.png" />
+      </div>
+      <div style="float:left; width:50%" ; class="fragment" ; data-fragment-index="3" ;>
+        <img style="border: none;box-shadow: none;" src="/img/numericalIntergration/cylinder_8.png" />
+      </div>
+      <div style="float:left; width:50%" ; class="fragment" ; data-fragment-index="4" ;>
+        <img style="border: none;box-shadow: none;" src="/img/numericalIntergration/cylinder_32.png" />
+      </div>
+    </div>
+    <div class="box2 middle fragment" ; data-fragment-index="5">
+      <img style="border: none;box-shadow: none;" src="/img/numericalIntergration/cylinder_surface_convergence.png" />
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <h4>Cantilever 2D</h4>
+  <div style="z-index: -1;position:absolute; top:-20%;width:150%;left:-20%;right:0; margin-left:auto;margin-right:auto;">
+    <img class="fragment" ;data-fragment-index="1" ; style="border: none;box-shadow: none; " ; src="/videos/Cantilever/CantiTriangleSlerp.gif" ;>
+    </img>
+  </div>
+
+  <div class="fragment" ;data-fragment-index="1" ; style="position:absolute; top:350%;left:0%;right:0; margin-left:auto;margin-right:auto;">
+    Slerp P1 Filter</div>
+</section>
+
+
+
+<section>
+  <h4>Cantilever 2D</h4>
+  <div style="z-index: -1;position:absolute; top:-20%;width:150%;left:-20%;right:0; margin-left:auto;margin-right:auto;">
+    <img class="fragment" ;data-fragment-index="1" ; style="border: none;box-shadow: none; " ; src="/videos/Cantilever/CantiQuadSlerp.gif" ;>
+    </img>
+  </div>
+
+  <div class="fragment" ;data-fragment-index="1" ; style="position:absolute; top:350%;left:0%;right:0; margin-left:auto;margin-right:auto;">
+    Slerp Q1 Filter</div>
+</section>
+
+
+
+<section>
+  <h4>Cantilever 2D</h4>
+  <div style="z-index: -1;position:absolute; top:-20%;width:150%;left:-20%;right:0; margin-left:auto;margin-right:auto;">
+    <img class="fragment" ;data-fragment-index="1" ; style="border: none;box-shadow: none; " ; src="/videos/Cantilever/Video_ORIOL_CantileverTriangle_Case_3_2_1_44.gif" ;>
+    </img>
+  </div>
+
+  <div class="fragment" ;data-fragment-index="1" ; style="position:absolute; top:350%;left:0%;right:0; margin-left:auto;margin-right:auto;">
+    Projected-gradient P1 Filter</div>
+</section>
+
+
+
+<section>
+  <h4>Cantilever 2D</h4>
+  <div style="z-index: -1;position:absolute; top:-20%;width:150%;left:-20%;right:0; margin-left:auto;margin-right:auto;">
+    <img class="fragment" ;data-fragment-index="1" ; style="border: none;box-shadow: none; " ; src="/videos/Cantilever/Video_CantileverTriangleFine_Case_4_1_1_35.gif" ;>
+    </img>
+  </div>
+
+  <div class="fragment" ;data-fragment-index="1" ; style="position:absolute; top:350%;left:0%;right:0; margin-left:auto;margin-right:auto;">
+    IPOPT P1 Filter</div>
+</section>
+
+
+
+<section>
+  <div style="position:absolute;top:0%" ; class="center">
+    <h4>Bridge 2D</h4>
+  </div>
+  <div style="position: absolute; width:25%; right: 0%; top:400%" ; class="fragment" ; data-fragment-index="1"><img style="border: none;box-shadow: none;" src="/img/bridge.png" /></div>
+  <div style="position: absolute; top:-220%;width: 185%; left: -50%; z-index: -1;" ; class="fragment" ; data-fragment-index="1"><img style="border: none;box-shadow: none;"
+      src="/videos/Bridge/Video_ORIOL_BridgeCoolQuadrilateralSYM_Case_5_2_1_195.gif" /></div>
+  <div class="fragment" ;data-fragment-index="1" ; style="position:absolute; top:1050%;left:0%;right:0; margin-left:auto;margin-right:auto;">
+    SLERP P1 Filter</div>
+</section>
+
+
+
+<section>
+  <div style="position:absolute;top:-400%" ; class="center">
+    <h4>Gripping 2D</h4>
+  </div>
+  <div style="position: absolute; width:25%; right: 0%; top:0%" ; class="fragment" ; data-fragment-index="1"><img style="border: none;box-shadow: none;" src="/img/gripping.png" /></div>
+  <div style="position: absolute; top:-200%;width: 75%; left: -0%; z-index: -1;" ; class="fragment" ; data-fragment-index="1">
+    <video class="fragment" ;data-fragment-index="1" ; style="border: none;box-shadow: none; z-index: -1" ; autoplay loop controls>
+      <source src="/videos/Gripping/Gripping.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="fragment" ;data-fragment-index="1" ; style="position:absolute; top:700%;left:0%;right:0; margin-left:auto;margin-right:auto;">
+    SLERP P1 Filter</div>
+</section>
+
+
+
+
+<section>
+  <div style="position: absolute;left:30%;top: -100%">
+    <h4>3D-printing</h4>
+  </div>
+  <div style="z-index: -1;position:absolute; top:20%;width:100%;left:0%;right:0; margin-left:auto;margin-right:auto;">
+    <img class="fragment" ;data-fragment-index="2" ; style="border: none;box-shadow: none; width:80%" ; src="/img/AM.png" ;></img>
+  </div>
+  </div>
+</section>
+
+
+
+
+<section>
+  <div style="position: absolute;left:20%;top: -400%">
+    <h4>Micro-structure</h4>
+  </div>
+  <div style="position: absolute;width: 100%; top:-200%">
+    <div style=" width:20%; position: absolute;left:0%;">
+      <img class="fragment" ;data-fragment-index="1" ; style="border:none;box-shadow:none" ; src="/videos/Micro/Video_Horizontal_SLERP_34Crop.gif" ;></img>
+    </div>
+    <div style=" width:20%; position: absolute;left: 40%">
+      <img class="fragment" ;data-fragment-index="2" ; style="border:none;box-shadow:none" ; src="/videos/Micro/Video_Bulk2_55Crop.gif" ;></img>
+    </div>
+    <div style=" width:20%; position: absolute;right:0%">
+      <img class="fragment" ;data-fragment-index="3" ; style="border:none;box-shadow:none" ; src="/videos/Micro/Video_Shear_12Crop.gif" ;></img>
+    </div>
+  </div>
+  <div style="position: absolute;width: 100%; top:400%">
+    <div style=" width:20%; position: absolute;left:0%;">
+      <img class="fragment" ;data-fragment-index="4" ; style="border:none;box-shadow:none" ; src="/videos/Micro/Video_CompositeMaterial_28Crop.gif" ;></img>
+    </div>
+    <div style=" width:20%; position: absolute;left: 40%">
+      <img class="fragment" ;data-fragment-index="5" ; style="border:none;box-shadow:none" ; src="/videos/Micro/Video_Vfrac06_91Crop.gif" ;></img>
+    </div>
+    <div style=" width:20%; position: absolute;right:0%">
+      <img class="fragment" ;data-fragment-index="6" ; style="border:none;box-shadow:none" ; src="/videos/Micro/Poisson.gif" ;></img>
+    </div>
+  </div>
+
+
+
+</section>
+
+
+
+<section>
+  <div style="position: absolute;left:30%;top: -30%">
+    <h4>Perimeter effect</h4>
+  </div>
+  <div class="fragment" ;data-fragment-index="1" ; style="position:absolute; top:-20%;left:0%;right:0; margin-left:auto;margin-right:auto;font-size: 0.8em">
+    <ul>
+      <li>
+        Adding Perimeter funcional: $ \
+        Per_{\varepsilon}(\Omega)=\frac{1}{2\varepsilon}\int_{\Omega}{(1-L_\varepsilon(\chi_{\Omega,\varepsilon}))\chi_{\Omega,\varepsilon} d\Omega}$
+      </li>
+    </ul>
+  </div>
+  <div style="z-index: -1;position:relative;margin:auto;width=25%;top:-50%">
+    <img class="fragment" ;data-fragment-index="2" ; style="border: none;box-shadow: none; " ; src="/videos/Perimeter.gif" ;>
+    </img>
+  </div>
+
+</section>
+
+
+<section>
+  <div style="position: relative;top: -60%">
+    <h4>Perimeter effect</h4>
+  </div>
+  <div class="fragment" ;data-fragment-index="1" ; style="position:relative; top:-50%;left:-20%;right:0; margin-left:auto;margin-right:auto;font-size: 0.8em">
+    <ul>
+      <li>
+        Penalizing Perimeter funcional in the cost:
+      </li>
+      <div style="position: relative; left:45%"> $\underset{\Omega \in U}{\text{min}} \ J(\Omega) + \alpha
+        Per_\varepsilon(\Omega)$</div>
+    </ul>
+  </div>
+  <div style="z-index: -1;position:relative;margin:auto;width=25%;top:-50%">
+    <img class="fragment" ;data-fragment-index="2" ; style="border: none;box-shadow: none; width:45%" ; src="/img/PerimeterPossion.png" ;>
+    </img>
+  </div>
+
+</section>
+
+
+<section>
+  <div style="position: absolute;left:30%;top: -200%">
+    <h4>Cantilever 3D</h4>
+  </div>
+  <div style="z-index: -1;position:absolute; top:100%;width:70%;left:0%;right:0; margin-left:auto;margin-right:auto;">
+    <img class="fragment" ;data-fragment-index="2" ; style="border: none;box-shadow: none; width:100%" ; src="/videos/3D/Video_ORIOL_CantileverbeamHexahedraSYM_Case_1_1_1_57Crop.gif" ;>
+    </img>
+  </div>
+  </div>
+</section>
+
+
+<section>
+  <div style="position: absolute;left:30%;top: -100%">
+    <h4>Bridge 3D</h4>
+  </div>
+  <div style="z-index: -1;position:absolute; top:100%;width:100%;left:0%;right:0; margin-left:auto;margin-right:auto;">
+    <img class="fragment" ;data-fragment-index="2" ; style="border: none;box-shadow: none; width:49%" ; src="/videos/3D/Video_ORIOL_ImprovedBridgeSYM_Case_1_2_1_204cROP.gif" ;></img>
+    <img class="fragment" ;data-fragment-index="2" ; style="border: none;box-shadow: none; width:49%" ; src="/videos/3D/Video_ORIOL_ImprovedBridgeSYM_Case_2_2_1_520_x4cROP.gif" ;></img>
+  </div>
+  </div>
+</section>
+
+
+<section>
+  <div style="position: absolute;left:30%;top: -100%">
+    <h4>Other 3D</h4>
+  </div>
+  <div style="z-index: -1;position:absolute; top:100%;width:100%;left:0%;right:0; margin-left:auto;margin-right:auto;">
+    <img class="fragment" ;data-fragment-index="2" ; style="border: none;box-shadow: none; width:49%" ; src="/videos/3D/ShortCantileverCrop.gif" ;></img>
+    <img class="fragment" ;data-fragment-index="2" ; style="border: none;box-shadow: none; width:49%" ; src="/videos/3D/Chair3D.gif" ;></img>
+  </div>
+  </div>
+</section>
+
+
+<section>
+  <div style="position: absolute;left:30%;top: -100%">
+    <h4>Unfitted mesh</h4>
+  </div>
+
+
+  <div style="z-index: -1;position:absolute; top:100%;width:100%;left:0%;right:0; margin-left:auto;margin-right:auto;">
+    <video class="fragment" ;data-fragment-index="1" ; style="width:49%;z-index: -1" ; loop autoplay controls;>
+      <source src="/videos/3D/SecondTopOpt3DCrop.mp4" type="video/mp4">
+    </video>
+    <video class="fragment" ;data-fragment-index="1" ; style="width:49%;z-index: -1" ; loop autoplay controls;>
+      <source src="/videos/3D/SecondTopOpt3D_withMeshCrop.mp4" type="video/mp4">
+    </video>
+    <!-- <img class="fragment" ;data-fragment-index="1" ; style="border: none;box-shadow: none; width:49%" ; src="/videos/3D/CantileverCropParaviewWithoutMesh.gif"
+            ;></img>
+        <img class="fragment" ;data-fragment-index="1" ; style="border: none;box-shadow: none; width:49%" ; src="/videos/3D/CantileverCropParaview.gif"
+            ;></img> -->
+  </div>
+  </div>
+</section>
+
+
+<section>
+  <div class="main" ;>
+    <div class="centerTitle" ; style="width:100%;transform: translateY(25%);" ;>
+      <h5>
+        My contribution on Topology optimization
+      </h5>
+    </div>
+    <div class="bullet" ; style="left:5%; width: 100%;">
+      <ul class="myUl" ; style="font-size:65%; transform: translateY(0%);" ;>
+
+        <li class="fragment myLi" ; data-fragment-index="1" ;>
+          Published <b>6 journal articles</b> on the topic
+          <ul class="myUl" ; style="font-size:80%">
+            <li class="fragment myLi" ; data-fragment-index="2" ;>
+              <b>A Ferrer</b>, J Oliver, JC Cante, and O Lloberas.
+              Vademecum-based approach to multi-scale topolog-
+              ical material design. Advanced Modeling and Simulation in Engineering Sciences, 2016.
+            </li>
+            <li class="fragment myLi" ; data-fragment-index="2" ;>
+              SM Giusti, <b>A Ferrer</b> and J Oliver.
+              Topological sensitivity analysis in heterogeneous anisotropic elasticity problem.
+              Theoretical and computational aspects. Computer Methods in Applied Mechanics and Engineering, 2016.
+            </li>
+            <li class="fragment myLi" ; data-fragment-index="2" ;>
+              <b>A Ferrer</b>, J Oliver JC Cante, and JA Hernández. Two-scale topology optimization in computational material design: an integrated approach.
+              International Journal for Numerical Methods in Engineering, 2017.
+            </li>
+
+            <li class="fragment myLi" ; data-fragment-index="2" ;>
+              S Amstutz,C Dapogny, <b>A Ferrer</b>. A consistent relaxation of optimal design problems for coupling
+              shape and topological derivatives. Numerische Mathematik, 2018.
+            </li>
+
+            <li class="fragment myLi" ; data-fragment-index="2" ;>
+              Baiges, J Martınez-Frutos, D Herrero-Pérez, F Otero, <b>A Ferrer</b>.
+              Large-scale stochastic topology optimization using adaptive mesh refinement and coarsening through a two-level parallelization scheme.
+              Computer Methods in Applied Mechanics and Engineering, 2018.
+            </li>
+
+            <li class="fragment myLi" ; data-fragment-index="2" ;>
+              <b>A Ferrer</b>. SIMP-ALL: a generalized SIMP method based on topological derivative concept. International Journal for Numerical Methods in Engineering, 2019.
+            </li>
+
+
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <div class="main" ;>
+    <div class="centerTitle" ; style="width:100%;transform: translateY(35%);" ;>
+      <h5>
+        Impact on the department
+      </h5>
+    </div>
+    <div class="bullet" ; style="left:5%; width: 100%;">
+      <ul class="myUl" ; style="font-size:65%; transform: translateY(0%);" ;>
+
+        <li class="fragment myLi" ; data-fragment-index="1" ;>
+
+          <b>ERC Starting grant:</b>
+
+          <ul class="myUl" ; style="font-size:90%">
+            <li class="fragment myLi" ; data-fragment-index="1" ;>
+              <b>Tentative title:</b> Material design for additive manufacturing
+            </li>
+            <li class="fragment myLi" ; data-fragment-index="1" ;>
+               <b>Optimal lattice structures</b> obtained via de-homogenization techniques and build by AM techniques.
+          </ul>
+        </li>
+
+
+        <li class="fragment myLi" ; data-fragment-index="2" ;>
+
+          <b>Master course (I):</b>
+
+          <ul class="myUl" ; style="font-size:90%">
+            <li class="fragment myLi" ; data-fragment-index="2" ;>
+              <b>Tentative title:</b> Introduction to topology and structural optimization
+            </li>
+            <li class="fragment myLi" ; data-fragment-index="2" ;>
+              Based on G. Allaire course
+            </li>
+            <li class="fragment myLi" ; data-fragment-index="2" ;>
+              Parametric optimization. Structural optimization problem. Gateux and Frechet derivative. Shape
+              derivative. Topological derivative. Hashin-Shtrikman bounds. SIMP method. Projected
+              gradient-based methods and MMA. Level-set methods. Slerp algorithm. Hamilton-Jacobi
+              equation. Filters. <b>Final project:</b>: Topology optimization of an aircraft wing.
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <div class="main" ;>
+    <div class="centerTitle" ; style="width:100%;transform: translateY(35%);" ;>
+      <h5>
+        Impact on the department
+      </h5>
+    </div>
+    <div class="bullet" ; style="left:5%; width: 100%;">
+      <ul class="myUl" ; style="font-size:65%; transform: translateY(0%);" ;>
+
+
+        <li class="fragment myLi" ; data-fragment-index="1" ;>
+
+          <b>Master course (II):</b>
+          <ul class="myUl" ; style="font-size:90%">
+            <li class="fragment myLi" ; data-fragment-index="2" ;>
+              <b>Tentative title:</b> Design and 3D-printing of lightweight materials:
+            </li>
+            <li class="fragment myLi" ; data-fragment-index="2" ;>
+              Contents: Brief introduction to Topology Optimization. Brief introduction of Multi-scale
+              analysis. Design of optimal micro-structures. Perimeter and minimum-length tools.
+              Application to meta-materials: minimum poisson, maximum bulk. Additive manufacturing
+              techniques. Fablab. <b>Final project</b>: Printing your own optimal micro-structure.
+            </li>
+          </ul>
+        </li>
+
+
+        <li class="fragment myLi" ; data-fragment-index="3" ;>
+          <b>PhD supervision:</b> Material design for additive manufacturing </li>
+        <li class="fragment myLi" ; data-fragment-index="4" ;>
+          <b>Possible department collaboration:</b> J. Cante, R. Flores
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</section>
